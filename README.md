@@ -1,2 +1,3 @@
-# improve-map-zoom-in-clarity-for-precise-location-viewing
-Exported from Caffeine project: Improve map zoom-in clarity for precise location viewing
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

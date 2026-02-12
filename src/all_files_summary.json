@@ -1,0 +1,20 @@
+{
+  "backend/main.mo": "Motoko backend providing HTTP outcalls for external IP, ping latency, geo info, and download speed tests with fallback providers and timing logic.",
+  "feature_evidence.json": "Feature evidence report mapping feature IDs to affected frontend files, components, test IDs, and confidence levels.",
+  "frontend-file-summaries.txt": "Prewritten summaries describing the purpose of each frontend file including components, hooks, styling, and app behavior.",
+  "frontend/index.css": "Tailwind-based global styles defining OKLCH color tokens, light/dark theme variables, and base element styling.",
+  "frontend/index.html": "Basic HTML entry point mounting the React root and loading main.tsx via module script.",
+  "frontend/src/App.tsx": "Main React app handling high-accuracy geolocation tracking, reconnection logic, toasts, trail storage, distance calculation, and UI composition.",
+  "frontend/src/components/CoordinateDisplay.tsx": "Displays formatted coordinates, accuracy quality, speed, heading, and total distance with visual indicators for approximate location.",
+  "frontend/src/components/DeviceInfoDialog.tsx": "Dialog showing detailed device, browser, hardware, and network information with collapsible sections and live data updates.",
+  "frontend/src/components/Footer.tsx": "Footer showing attribution and link to caffeine.ai with simple styling.",
+  "frontend/src/components/Header.tsx": "Header with app icon, title, and subtitle for the GPS tracker UI.",
+  "frontend/src/components/MapView.tsx": "Canvas-based map component handling tile rendering, zooming, panning, auto-follow, and drawing user/trail markers with multiple tile providers.",
+  "frontend/src/hooks/useActor.ts": "Creates and manages a backend actor tied to Internet Identity, refetching dependent queries when identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides Internet Identity auth context, loading stored identities, handling login/logout, and exposing authentication state.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks that fetch external IP, network latency, and geo info using the authenticated backend actor.",
+  "frontend/src/index.css": "Tailwind base styles and theme variables defining light/dark color palettes, radii, and global styling.",
+  "frontend/src/main.tsx": "App entry point initializing React, QueryClient, Internet Identity provider, and global styles.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme colors, animations, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project metadata storing state, features, issues, and new feature requests for map improvements."
+}

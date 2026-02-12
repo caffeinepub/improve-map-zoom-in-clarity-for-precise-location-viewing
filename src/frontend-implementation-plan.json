@@ -1,0 +1,49 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Stabilize canvas map zoom anchoring and improve precise geolocation guidance",
+  "requirements": [
+    {
+      "id": "REQ-4",
+      "summary": "Keep the last known location dot visually anchored to the same geographic coordinate across button and pinch zoom, without unintended center drift while paused.",
+      "acceptanceCriteria": [
+        "When the user taps Zoom Out or performs pinch-zoom, and the underlying location latitude/longitude has not changed, the rendered location dot remains visually anchored to the same place on the map (no jump between tiles or re-centering drift).",
+        "Zooming in/out does not change the stored/used map center coordinate unless the user explicitly pans/recenters or a new location update is received in auto-follow mode.",
+        "Works consistently across button zoom and pinch zoom interactions."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MapView.tsx",
+          "operation": "modify",
+          "description": "Refactor the map rendering math to use a single, consistent world-pixel (Web Mercator) projection for both tiles and overlays so the user dot stays pinned to the same lat/lon across zoom levels (eliminate rounding/diagonal latPerTile/lonPerTile drift). Ensure zoom state updates (button + pinch) do not implicitly modify the current map center coordinate (auto-follow vs manual center), and keep pinch-zoom behavior consistent with button zoom anchoring."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the MapView is not force-remounted on non-location events (e.g., foreground/resume) in a way that can reset internal map state and cause perceived dot/tile shifting during zoom. Keep the last known location rendered even when tracking is paused (no new updates), without changing the stored map center coordinate unless explicitly panned/recentered or updated by auto-follow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Prefer high-accuracy geolocation for all tracking reads and show clear guidance when the browser only provides approximate location.",
+      "acceptanceCriteria": [
+        "All geolocation reads used for tracking (watch and any periodic refresh) request high accuracy (precise) mode when supported by the browser.",
+        "If the reported `coords.accuracy` indicates approximate location (e.g., unusually large radius), the UI shows clear English guidance telling the user to enable Precise Location in system/browser settings (without claiming the app can force it).",
+        "The app continues to function even when only approximate location is available (no crashes, and the map/dot still renders)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply enableHighAccuracy:true consistently for all geolocation reads used by tracking (watchPosition plus any getCurrentPosition refresh/reconnect reads), and add derived state that detects approximate location using coords.accuracy thresholds. Render a user-facing message when accuracy is large, clarifying that the app requests precise location but the user must enable Precise Location in OS/browser settings when only approximate is available. Use shadcn-ui Alert component styling for the guidance message. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CoordinateDisplay.tsx",
+          "operation": "modify",
+          "description": "Surface the current accuracy quality (precise vs approximate) near the displayed accuracy value, and include concise, plain-English guidance text when the reading is approximate (large accuracy radius). Use shadcn-ui Card/Badge/Alert styling patterns already present to keep messaging consistent. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

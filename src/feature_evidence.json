@@ -1,0 +1,45 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-canvas-map-zoom-behavior-so-the-user-s-last-known-location-dot-remains-pinned-to-the-exact-same-geographic-coordinate-when-zooming-out-in-no-visible-shifting-jumping-of-the-dot-relative-to-the-map-tiles-including-when-gps-tracking-is-paused-and-no-new-location-updates-are-arriving",
+      "featureTitle": "Fix the canvas map zoom behavior so the user’s last known location dot remains pinned to the exact same geographic coordinate when zooming out/in (no visible shifting/jumping of the dot relative to the map tiles), including when GPS tracking is paused and no new location updates are arriving.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/MapView.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-location-tracking-to-prefer-precise-high-accuracy-geolocation-whenever-available-and-add-user-facing-messaging-that-explains-how-to-enable-precise-location-at-the-os-browser-level-when-the-browser-only-provides-approximate-location-large-accuracy-radius",
+      "featureTitle": "Update location tracking to prefer “precise” (high accuracy) geolocation whenever available, and add user-facing messaging that explains how to enable Precise Location at the OS/browser level when the browser only provides approximate location (large accuracy radius).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CoordinateDisplay.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

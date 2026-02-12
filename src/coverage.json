@@ -1,0 +1,54 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T18:34:19.179Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-4",
+        "summary": "Fix the canvas map zoom behavior so the user’s last known location dot remains pinned to the exact same geographic coordinate when zooming out/in (no visible shifting/jumping of the dot relative to the map tiles), including when GPS tracking is paused and no new location updates are arriving.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/MapView.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/MapView.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Update location tracking to prefer “precise” (high accuracy) geolocation whenever available, and add user-facing messaging that explains how to enable Precise Location at the OS/browser level when the browser only provides approximate location (large accuracy radius).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/CoordinateDisplay.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/CoordinateDisplay.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/CoordinateDisplay.tsx",
+    "frontend/src/components/MapView.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

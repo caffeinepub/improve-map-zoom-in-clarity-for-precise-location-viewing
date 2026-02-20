@@ -1,0 +1,40 @@
+{
+  "name": "igo Satellite Tracker",
+  "short_name": "igo",
+  "description": "Real-time GPS tracking with satellite map visualization",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0f14",
+  "theme_color": "#06b6d4",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/generated/icon-192.dim_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/generated/icon-512.dim_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["navigation", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Start Tracking",
+      "short_name": "Track",
+      "description": "Start GPS tracking session",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/assets/generated/icon-192.dim_192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

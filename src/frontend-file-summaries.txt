@@ -1,14 +1,16 @@
 {
-  "frontend/src/App.tsx": "Main application component with three-column layout managing geolocation tracking, trail visualization, distance calculation, and session state with mobile number input, now without forced map re-renders on column expansion.",
-  "frontend/src/components/Header.tsx": "Responsive header component displaying the igo brand with satellite icon, optimized for mobile and desktop viewports.",
+  "frontend/src/App.tsx": "Main application component with three-column responsive layout managing GPS tracking with watchPosition, trail visualization using Haversine distance calculation, session state management, and inline device information display.",
+  "frontend/src/components/Header.tsx": "Responsive header component displaying the igo brand with satellite icon and tagline, optimized for mobile and desktop viewports.",
   "frontend/src/components/Footer.tsx": "Footer component with dynamic year, branding attribution including a heart icon, and UTM-tracked link to caffeine.ai using the app's hostname as identifier.",
-  "frontend/src/components/CoordinateDisplay.tsx": "Responsive coordinate display component optimized for narrow column widths, showing position, accuracy, movement metrics, and distance in a single-column stacked card layout.",
-  "frontend/src/components/MapView.tsx": "Interactive satellite map component with improved zoom stability through debounced tile loading, enhanced ResizeObserver management with longer settle delays, concurrent render prevention, and stable rendering during zoom transitions to eliminate flickering.",
-  "frontend/src/index.css": "Global styles with OKLCH color system featuring a distinctive teal/cyan satellite-inspired igo theme optimized for both light and dark modes, with warning color tokens for status indicators.",
-  "frontend/index.html": "HTML entry point with mobile-optimized viewport settings, touch-friendly meta tags, and igo branding in the title.",
+  "frontend/src/components/CoordinateDisplay.tsx": "Responsive coordinate display component showing GPS position with decimal precision, color-coded accuracy quality badges, real-time speed and heading metrics, and total distance counter in a stacked card layout.",
+  "frontend/src/components/MapView.tsx": "Interactive satellite map component with Web Mercator projection, tile rendering, GPS marker with color-coded accuracy circles (green/cyan/yellow/red based on precision thresholds), accuracy value overlay, trail visualization, and a precision quality legend panel in the bottom-left corner.",
+  "frontend/src/index.css": "Global styles with OKLCH color system featuring teal/cyan satellite-inspired igo theme optimized for both light and dark modes with proper contrast ratios.",
+  "frontend/index.html": "HTML entry point with PWA meta tags including manifest link, apple-touch-icon, mobile-web-app-capable, and apple-mobile-web-app-status-bar-style for iOS PWA support.",
   "frontend/src/hooks/useQueries.ts": "React Query hook for fetching geo information from the backend with appropriate caching and refetch intervals.",
-  "frontend/src/main.tsx": "Application entry point that sets up React Query provider, Internet Identity provider, and Sonner toast notifications with top-center positioning, rich colors, and close button for GPS status alerts and user feedback.",
+  "frontend/src/main.tsx": "Application entry point with React Query, Internet Identity providers, and service worker registration with update detection and user notification for new PWA versions.",
   "frontend/src/components/DeviceInfoDialog.tsx": "Enhanced device information dialog with comprehensive hardware specifications, browser details, and network specifications in collapsible sections with real-time updates.",
-  "frontend/src/lib/geo.ts": "Geospatial utility functions for Web Mercator projection including meters-per-pixel calculation, GPS accuracy meter-to-pixel conversion, and optimal tile zoom level calculation that accounts for device pixel ratio to request higher resolution tiles on retina displays.",
-  "frontend/tailwind.config.js": "Tailwind configuration with igo theme colors, custom font families (Inter and JetBrains Mono), and extended utilities for the satellite tracking app design system."
+  "frontend/src/lib/geo.ts": "Geospatial utility functions for Web Mercator projection including tile coordinate conversion, meters-per-pixel calculation accounting for latitude, and optimal zoom level determination for high-DPI displays.",
+  "frontend/tailwind.config.js": "Tailwind configuration with igo theme colors using OKLCH values, custom font families (Inter and JetBrains Mono), and extended utilities for the satellite tracking app design system.",
+  "frontend/public/manifest.json": "PWA manifest file defining app metadata including name, icons, theme colors, display mode (standalone), and shortcuts for the igo Satellite Tracker application.",
+  "frontend/public/sw.js": "Service worker implementing cache-first strategy for static assets, network-first for API calls, automatic cache versioning, and update handling with skipWaiting for seamless PWA updates."
 }

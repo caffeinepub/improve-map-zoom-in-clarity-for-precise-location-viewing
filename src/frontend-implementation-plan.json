@@ -1,38 +1,90 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix map zoom flickering issue",
+  "title": "Convert application to Progressive Web App (PWA)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Fix persistent map zoom flickering by improving ResizeObserver handling and tile rendering stability during zoom operations",
+      "summary": "Create a web app manifest file with app metadata for PWA installation",
       "acceptanceCriteria": [
-        "Map zoom transitions are smooth without any flickering",
-        "ResizeObserver behavior during zoom is properly handled",
-        "Tile rendering during zoom operations is stable",
-        "User can zoom in and out repeatedly without visual artifacts"
+        "manifest.json is valid and includes all required PWA fields",
+        "App name and branding match the existing igo satellite theme",
+        "Display mode is set to 'standalone' for app-like experience"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/MapView.tsx",
-          "operation": "modify",
-          "description": "Investigate and fix the zoom flickering issue by analyzing the current ResizeObserver disconnect/reconnect logic, tile rendering timing, and zoom state management. Implement improvements such as: debouncing the ResizeObserver reconnection after zoom completes, ensuring tile requests are properly cancelled or queued during zoom transitions, adding requestAnimationFrame coordination for smooth rendering, and potentially adjusting the zoom animation timing to prevent race conditions between resize events and tile loading. Maintain the existing Web Mercator projection calculations and tile caching logic while ensuring the ResizeObserver disconnection during zoom operations works correctly."
+          "path": "frontend/public/manifest.json",
+          "operation": "create",
+          "description": "Create PWA manifest file with name 'igo Satellite Tracker', short_name 'igo', theme_color matching the satellite theme from the existing design system, background_color, display mode 'standalone', start_url '/', scope '/', and icons array referencing frontend/public/assets/generated/icon-192.dim_192x192.png and frontend/public/assets/generated/icon-512.dim_512x512.png with appropriate sizes and types"
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Test zoom functionality across rapid operations, touch gestures, and GPS trail rendering scenarios",
+      "summary": "Create a service worker implementing caching strategies for offline functionality",
       "acceptanceCriteria": [
-        "Zoom works smoothly during rapid consecutive operations",
-        "Touch-based zoom gestures work without flickering on mobile devices",
-        "Trail rendering remains stable during zoom operations"
+        "Service worker successfully registers on app load",
+        "Static assets are cached and available offline",
+        "Service worker updates properly when new versions are deployed"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/MapView.tsx",
+          "path": "frontend/public/sw.js",
+          "operation": "create",
+          "description": "Create service worker implementing install, activate, and fetch event handlers with cache-first strategy for static assets (CSS, JS, images including generated icons), network-first strategy for backend API calls to maintain fresh data, proper cache versioning for updates, and skipWaiting/clients.claim for seamless updates"
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Register the service worker in the main entry point with proper error handling",
+      "acceptanceCriteria": [
+        "Service worker registration code is added to frontend/src/main.tsx or a dedicated registration file",
+        "Registration happens after initial app load",
+        "Errors during registration are logged appropriately"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/main.tsx",
           "operation": "modify",
-          "description": "Add comprehensive testing scenarios and validation for zoom functionality including: handling rapid consecutive zoom operations with proper debouncing or throttling, ensuring touch gesture zoom (pinch-to-zoom) works smoothly on mobile devices without triggering flickering, and verifying that GPS trail rendering remains stable and visible during zoom transitions. Implement safeguards to prevent zoom event queuing issues and ensure trail coordinates are properly transformed when zoom level changes."
+          "description": "Add service worker registration after the React root render with navigator.serviceWorker.register('/sw.js') wrapped in production check, proper error handling with console logging, and update notification handling to inform users of new versions"
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Update index.html to link the manifest file and include PWA-specific meta tags",
+      "acceptanceCriteria": [
+        "Manifest link tag is present in the HTML head",
+        "Apple-specific meta tags enable iOS PWA support",
+        "Meta tags follow PWA best practices"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add manifest link tag in the head section, apple-mobile-web-app-capable meta tag set to 'yes', apple-mobile-web-app-status-bar-style set to 'black-translucent' to match the satellite theme, apple-touch-icon link referencing frontend/public/assets/generated/apple-touch-icon.dim_180x180.png, and mobile-web-app-capable meta tag for broader PWA support"
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Wire generated app icons into the PWA configuration",
+      "acceptanceCriteria": [
+        "Icons are generated and placed in frontend/public/assets/generated/",
+        "Icon sizes include at minimum 192x192 and 512x512 for Android",
+        "Icons follow the igo satellite theme with visible branding"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/manifest.json",
+          "operation": "modify",
+          "description": "Ensure the icons array references the generated PWA icons at frontend/public/assets/generated/icon-192.dim_192x192.png (192x192, type image/png, purpose any maskable) and frontend/public/assets/generated/icon-512.dim_512x512.png (512x512, type image/png, purpose any maskable) with proper workspace paths for Android PWA installation"
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add apple-touch-icon link tag referencing the generated Apple icon at frontend/public/assets/generated/apple-touch-icon.dim_180x180.png with sizes='180x180' attribute for iOS home screen installation"
         }
       ]
     }

@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the persistent map zoom flickering issue in the map view component.
+**Goal:** Convert the igo Satellite Tracker application into a Progressive Web App (PWA) to enable installation on mobile devices and offline functionality.
 
 **Planned changes:**
-- Investigate and resolve zoom flickering that persists despite existing ResizeObserver disconnect logic
-- Ensure smooth tile rendering during zoom operations
-- Test zoom functionality across rapid operations, touch gestures, and active GPS trail rendering scenarios
+- Create web app manifest with app metadata and icon references
+- Implement service worker with caching strategies for offline support
+- Register service worker in the application entry point
+- Update HTML to link manifest and include PWA meta tags
+- Generate PWA app icons for Android and iOS devices
 
-**User-visible outcome:** Users can zoom in and out on the map smoothly without any visual flickering or artifacts, including during rapid zoom operations and while GPS trails are being rendered.
+**User-visible outcome:** Users can install the igo Satellite Tracker as a standalone app on their mobile devices and access cached content when offline.

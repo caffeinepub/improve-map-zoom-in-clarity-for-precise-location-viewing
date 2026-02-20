@@ -1,32 +1,64 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
-  "known_issues": [
-    "Map zoom flickering issue not resolved"
+  "summary": "Progressive Web App (PWA) project",
+  "architectural_notes": [
+    "Building as a Progressive Web App for installable web experience"
   ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- PWA app icon with igo satellite branding on dark background, circular design with satellite symbol (icon-192.dim_192x192.png)\n- PWA app icon with igo satellite branding on dark background, circular design with satellite symbol (icon-512.dim_512x512.png)\n- Apple touch icon with igo satellite branding, squared with rounded corners (apple-touch-icon.dim_180x180.png)",
   "existing_features": [
     {
-      "id": "feature-investigate-and-fix-the-persistent-map-zoom-flickering-issue-in-mapview-tsx-that-occurs-despite-the-existing-resizeobserver-disconnect-during-zoom-operations",
-      "title": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
+      "id": "feature-create-a-web-app-manifest-file-frontend-public-manifest-json-with-app-metadata-including-name-igo-satellite-tracker-short-name-igo-theme-color-matching-the-satellite-theme-background-color-display-mode-standalone-and-icon-references-for-multiple-sizes-192x192-512x512",
+      "title": "Create a web app manifest file (frontend/public/manifest.json) with app metadata including name 'igo Satellite Tracker', short_name 'igo', theme_color matching the satellite theme, background_color, display mode 'standalone', and icon references for multiple sizes (192x192, 512x512)",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-test-the-zoom-functionality-across-different-scenarios-including-rapid-zoom-operations-touch-gestures-on-mobile-and-zoom-with-active-gps-trails-being-rendered",
-      "title": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "id": "feature-create-a-service-worker-frontend-public-sw-js-that-implements-caching-strategies-for-offline-functionality-including-cache-first-for-static-assets-css-js-images-and-network-first-for-api-calls",
+      "title": "Create a service worker (frontend/public/sw.js) that implements caching strategies for offline functionality, including cache-first for static assets (CSS, JS, images) and network-first for API calls",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-frontend-index-html-to-link-the-manifest-file-and-include-pwa-specific-meta-tags-apple-mobile-web-app-capable-apple-mobile-web-app-status-bar-style-mobile-web-app-capable",
+      "title": "Update frontend/index.html to link the manifest file and include PWA-specific meta tags (apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, mobile-web-app-capable)",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-app-icons-as-required-images-to-support-pwa-installation-with-proper-sizes-and-formats-for-both-android-and-ios-devices",
+      "title": "Generate app icons as required images to support PWA installation with proper sizes and formats for both Android and iOS devices",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
     }
   ],
-  "new_feature_requests": [],
-  "projectName": "Fix map zoom flickering issue",
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Convert application to Progressive Web App (PWA)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Register the service worker in the main entry point with proper error handling and update notifications",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "igo Satellite Tracker",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

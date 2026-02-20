@@ -1,35 +1,68 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T11:25:35.010Z",
+  "generatedAt": "2026-02-20T12:16:33.597Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 5,
+    "implemented": 4,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
+        "summary": "Create a web app manifest file (frontend/public/manifest.json) with app metadata including name 'igo Satellite Tracker', short_name 'igo', theme_color matching the satellite theme, background_color, display mode 'standalone', and icon references for multiple sizes (192x192, 512x512)",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/MapView.tsx"
+          "frontend/public/manifest.json"
         ],
         "matchedFiles": [
-          "frontend/src/components/MapView.tsx"
+          "frontend/public/manifest.json"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+        "summary": "Create a service worker (frontend/public/sw.js) that implements caching strategies for offline functionality, including cache-first for static assets (CSS, JS, images) and network-first for API calls",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/MapView.tsx"
+          "frontend/public/sw.js"
         ],
         "matchedFiles": [
-          "frontend/src/components/MapView.tsx"
+          "frontend/public/sw.js"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Register the service worker in the main entry point with proper error handling and update notifications",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/main.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Update frontend/index.html to link the manifest file and include PWA-specific meta tags (apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, mobile-web-app-capable)",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Generate app icons as required images to support PWA installation with proper sizes and formats for both Android and iOS devices",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/manifest.json",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/public/manifest.json",
+          "frontend/index.html"
         ]
       }
     ]
@@ -39,7 +72,12 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/MapView.tsx",
+    "frontend/index.html",
+    "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+    "frontend/public/assets/generated/icon-192.dim_192x192.png",
+    "frontend/public/assets/generated/icon-512.dim_512x512.png",
+    "frontend/public/manifest.json",
+    "frontend/public/sw.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

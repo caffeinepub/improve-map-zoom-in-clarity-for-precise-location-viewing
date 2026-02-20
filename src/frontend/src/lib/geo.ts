@@ -1,46 +1,53 @@
-/**
- * Geospatial utility functions for Web Mercator projection and GPS accuracy visualization
- */
+// Web Mercator projection utilities
 
-/**
- * Calculate meters per pixel at a given latitude and zoom level for Web Mercator projection
- * @param latitude - Latitude in degrees
- * @param zoom - Integer zoom level (should be rounded before calling)
- * @returns Meters per pixel at the given latitude and zoom
- */
-export function metersPerPixel(latitude: number, zoom: number): number {
-  const earthCircumference = 40075017; // Earth's circumference at equator in meters
-  const latitudeRadians = latitude * Math.PI / 180;
-  return (earthCircumference * Math.cos(latitudeRadians)) / (256 * Math.pow(2, zoom));
-}
+const TILE_SIZE = 256;
 
-/**
- * Convert GPS accuracy in meters to pixel radius for display on map
- * @param accuracyMeters - GPS accuracy in meters
- * @param latitude - Current latitude in degrees
- * @param zoom - Integer zoom level (should be rounded before calling)
- * @returns Radius in pixels for drawing accuracy circle
- */
-export function accuracyMetersToPixels(accuracyMeters: number, latitude: number, zoom: number): number {
-  const mpp = metersPerPixel(latitude, zoom);
-  return accuracyMeters / mpp;
-}
-
-/**
- * Calculate optimal tile zoom level accounting for device pixel ratio
- * For high-DPI displays (retina), we request higher resolution tiles
- * @param displayZoom - Current display zoom level
- * @param devicePixelRatio - Device pixel ratio (window.devicePixelRatio)
- * @returns Optimal tile zoom level for requesting tiles
- */
-export function getOptimalTileZoom(displayZoom: number, devicePixelRatio: number): number {
-  const baseZoom = Math.round(displayZoom);
+export function latLngToTile(lat: number, lng: number, zoom: number): { x: number; y: number } {
+  const latRad = (lat * Math.PI) / 180;
+  const n = Math.pow(2, zoom);
   
-  // For retina displays (DPR >= 2), request one zoom level higher for sharper tiles
-  // But cap at reasonable limits to avoid excessive tile requests
-  if (devicePixelRatio >= 2 && baseZoom < 19) {
-    return Math.min(baseZoom + 1, 19);
+  const x = ((lng + 180) / 360) * n;
+  const y = ((1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2) * n;
+  
+  return { x, y };
+}
+
+export function tileToLatLng(x: number, y: number, zoom: number): { lat: number; lng: number } {
+  const n = Math.pow(2, zoom);
+  
+  const lng = (x / n) * 360 - 180;
+  const latRad = Math.atan(Math.sinh(Math.PI * (1 - (2 * y) / n)));
+  const lat = (latRad * 180) / Math.PI;
+  
+  return { lat, lng };
+}
+
+export function getMetersPerPixel(latitude: number, zoom: number): number {
+  const earthCircumference = 40075017; // meters at equator
+  const latitudeRadians = (latitude * Math.PI) / 180;
+  
+  return (earthCircumference * Math.cos(latitudeRadians)) / (TILE_SIZE * Math.pow(2, zoom));
+}
+
+export function getAccuracyRadiusPixels(accuracyMeters: number, latitude: number, zoom: number): number {
+  const metersPerPixel = getMetersPerPixel(latitude, zoom);
+  return accuracyMeters / metersPerPixel;
+}
+
+export function getOptimalZoom(accuracyMeters: number, viewportWidth: number): number {
+  // Calculate zoom level where accuracy circle fits nicely in viewport
+  const targetPixels = viewportWidth * 0.3; // 30% of viewport
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  
+  // Start from zoom 16 and adjust
+  for (let zoom = 19; zoom >= 3; zoom--) {
+    const metersPerPixel = getMetersPerPixel(0, zoom); // Use equator for estimation
+    const radiusPixels = accuracyMeters / metersPerPixel;
+    
+    if (radiusPixels * devicePixelRatio <= targetPixels) {
+      return zoom;
+    }
   }
   
-  return baseZoom;
+  return 16; // Default fallback
 }

@@ -1,55 +1,117 @@
 {
   "kind": "build_request",
-  "title": "Fix map zoom flickering issue",
-  "priority": "high",
+  "title": "Convert application to Progressive Web App (PWA)",
+  "projectName": "igo Satellite Tracker",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
+      "text": "Create a web app manifest file (frontend/public/manifest.json) with app metadata including name 'igo Satellite Tracker', short_name 'igo', theme_color matching the satellite theme, background_color, display mode 'standalone', and icon references for multiple sizes (192x192, 512x512)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-user-3"
         ],
         "quotes": [
-          "not resolved"
+          "3"
         ]
       },
       "acceptanceCriteria": [
-        "Map zoom transitions are smooth without any flickering",
-        "ResizeObserver behavior during zoom is properly handled",
-        "Tile rendering during zoom operations is stable",
-        "User can zoom in and out repeatedly without visual artifacts"
+        "manifest.json is valid and includes all required PWA fields",
+        "App name and branding match the existing igo satellite theme",
+        "Display mode is set to 'standalone' for app-like experience"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "text": "Create a service worker (frontend/public/sw.js) that implements caching strategies for offline functionality, including cache-first for static assets (CSS, JS, images) and network-first for API calls",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-user-3"
+        ],
+        "quotes": [
+          "3"
         ]
       },
       "acceptanceCriteria": [
-        "Zoom works smoothly during rapid consecutive operations",
-        "Touch-based zoom gestures work without flickering on mobile devices",
-        "Trail rendering remains stable during zoom operations"
+        "Service worker successfully registers on app load",
+        "Static assets are cached and available offline",
+        "Service worker updates properly when new versions are deployed"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Register the service worker in the main entry point with proper error handling and update notifications",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-3"
+        ],
+        "quotes": [
+          "3"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Service worker registration code is added to frontend/src/main.tsx or a dedicated registration file",
+        "Registration happens after initial app load",
+        "Errors during registration are logged appropriately"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Update frontend/index.html to link the manifest file and include PWA-specific meta tags (apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, mobile-web-app-capable)",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-3"
+        ],
+        "quotes": [
+          "3"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Manifest link tag is present in the HTML head",
+        "Apple-specific meta tags enable iOS PWA support",
+        "Meta tags follow PWA best practices"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Generate app icons as required images to support PWA installation with proper sizes and formats for both Android and iOS devices",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-3"
+        ],
+        "quotes": [
+          "3"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Icons are generated and placed in frontend/public/assets/generated/",
+        "Icon sizes include at minimum 192x192 and 512x512 for Android",
+        "Icons follow the igo satellite theme with visible branding"
       ]
     }
   ],
   "constraints": [
-    "Must maintain existing ResizeObserver disconnection logic during zoom",
-    "Must not break existing tile caching or Web Mercator projection calculations",
-    "Must preserve touch-friendly mobile optimization"
+    "Service worker must not interfere with Internet Identity authentication flow",
+    "Cached content must not prevent users from receiving important security updates",
+    "PWA must maintain compatibility with existing GPS tracking and map functionality"
   ],
   "nonGoals": [
-    "Changing the map projection system",
-    "Modifying the GPS tracking functionality",
-    "Altering the trail rendering algorithm"
+    "Native app store submission or packaging",
+    "Push notifications or background sync",
+    "Offline GPS tracking data storage beyond session",
+    "Desktop-specific PWA features"
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "PWA app icon with igo satellite branding on dark background, circular design with satellite symbol (icon-192.dim_192x192.png)",
+      "PWA app icon with igo satellite branding on dark background, circular design with satellite symbol (icon-512.dim_512x512.png)",
+      "Apple touch icon with igo satellite branding, squared with rounded corners (apple-touch-icon.dim_180x180.png)"
+    ],
     "edits": []
   }
 }

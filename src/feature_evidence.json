@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-investigate-and-fix-the-persistent-map-zoom-flickering-issue-in-mapview-tsx-that-occurs-despite-the-existing-resizeobserver-disconnect-during-zoom-operations",
-      "featureTitle": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
+      "featureId": "feature-create-a-web-app-manifest-file-frontend-public-manifest-json-with-app-metadata-including-name-igo-satellite-tracker-short-name-igo-theme-color-matching-the-satellite-theme-background-color-display-mode-standalone-and-icon-references-for-multiple-sizes-192x192-512x512",
+      "featureTitle": "Create a web app manifest file (frontend/public/manifest.json) with app metadata including name 'igo Satellite Tracker', short_name 'igo', theme_color matching the satellite theme, background_color, display mode 'standalone', and icon references for multiple sizes (192x192, 512x512)",
       "files": [
-        "frontend/src/components/MapView.tsx"
+        "frontend/public/manifest.json"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,10 +21,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-test-the-zoom-functionality-across-different-scenarios-including-rapid-zoom-operations-touch-gestures-on-mobile-and-zoom-with-active-gps-trails-being-rendered",
-      "featureTitle": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "featureId": "feature-create-a-service-worker-frontend-public-sw-js-that-implements-caching-strategies-for-offline-functionality-including-cache-first-for-static-assets-css-js-images-and-network-first-for-api-calls",
+      "featureTitle": "Create a service worker (frontend/public/sw.js) that implements caching strategies for offline functionality, including cache-first for static assets (CSS, JS, images) and network-first for API calls",
       "files": [
-        "frontend/src/components/MapView.tsx"
+        "frontend/public/sw.js"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -36,6 +36,45 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-frontend-index-html-to-link-the-manifest-file-and-include-pwa-specific-meta-tags-apple-mobile-web-app-capable-apple-mobile-web-app-status-bar-style-mobile-web-app-capable",
+      "featureTitle": "Update frontend/index.html to link the manifest file and include PWA-specific meta tags (apple-mobile-web-app-capable, apple-mobile-web-app-status-bar-style, mobile-web-app-capable)",
+      "files": [
+        "frontend/index.html"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-app-icons-as-required-images-to-support-pwa-installation-with-proper-sizes-and-formats-for-both-android-and-ios-devices",
+      "featureTitle": "Generate app icons as required images to support PWA installation with proper sizes and formats for both Android and iOS devices",
+      "files": [
+        "frontend/index.html",
+        "frontend/public/manifest.json"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }

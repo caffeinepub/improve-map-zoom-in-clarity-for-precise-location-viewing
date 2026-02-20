@@ -1,22 +1,38 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Expand satellite map to 90% screen coverage on click",
+  "title": "Fix map zoom flickering issue",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Expand satellite map column to 90% width when clicked, collapsing other columns to share 10% total width",
+      "summary": "Fix persistent map zoom flickering by improving ResizeObserver handling and tile rendering stability during zoom operations",
       "acceptanceCriteria": [
-        "Clicking the map column expands it to 90% screen width",
-        "Other two columns are collapsed to share 10% total width",
-        "Clicking the map again or clicking another column restores the default layout",
-        "Transition is smooth and matches existing column expansion behavior"
+        "Map zoom transitions are smooth without any flickering",
+        "ResizeObserver behavior during zoom is properly handled",
+        "Tile rendering during zoom operations is stable",
+        "User can zoom in and out repeatedly without visual artifacts"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/MapView.tsx",
           "operation": "modify",
-          "description": "Modify the existing click-to-expand column functionality to apply 90% width to the map column when expanded (instead of the current expansion ratio). Update the column width calculation logic so that when the map column is clicked, it receives 90% width while the other two columns share the remaining 10% width (5% each). Ensure the transition animation remains smooth and consistent with the existing behavior. Preserve the ability to restore default layout by clicking the expanded column again or clicking another column."
+          "description": "Investigate and fix the zoom flickering issue by analyzing the current ResizeObserver disconnect/reconnect logic, tile rendering timing, and zoom state management. Implement improvements such as: debouncing the ResizeObserver reconnection after zoom completes, ensuring tile requests are properly cancelled or queued during zoom transitions, adding requestAnimationFrame coordination for smooth rendering, and potentially adjusting the zoom animation timing to prevent race conditions between resize events and tile loading. Maintain the existing Web Mercator projection calculations and tile caching logic while ensuring the ResizeObserver disconnection during zoom operations works correctly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Test zoom functionality across rapid operations, touch gestures, and GPS trail rendering scenarios",
+      "acceptanceCriteria": [
+        "Zoom works smoothly during rapid consecutive operations",
+        "Touch-based zoom gestures work without flickering on mobile devices",
+        "Trail rendering remains stable during zoom operations"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/MapView.tsx",
+          "operation": "modify",
+          "description": "Add comprehensive testing scenarios and validation for zoom functionality including: handling rapid consecutive zoom operations with proper debouncing or throttling, ensuring touch gesture zoom (pinch-to-zoom) works smoothly on mobile devices without triggering flickering, and verifying that GPS trail rendering remains stable and visible during zoom transitions. Implement safeguards to prevent zoom event queuing issues and ensure trail coordinates are properly transformed when zoom level changes."
         }
       ]
     }

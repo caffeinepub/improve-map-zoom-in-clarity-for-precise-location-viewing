@@ -25,3 +25,22 @@ export function accuracyMetersToPixels(accuracyMeters: number, latitude: number,
   const mpp = metersPerPixel(latitude, zoom);
   return accuracyMeters / mpp;
 }
+
+/**
+ * Calculate optimal tile zoom level accounting for device pixel ratio
+ * For high-DPI displays (retina), we request higher resolution tiles
+ * @param displayZoom - Current display zoom level
+ * @param devicePixelRatio - Device pixel ratio (window.devicePixelRatio)
+ * @returns Optimal tile zoom level for requesting tiles
+ */
+export function getOptimalTileZoom(displayZoom: number, devicePixelRatio: number): number {
+  const baseZoom = Math.round(displayZoom);
+  
+  // For retina displays (DPR >= 2), request one zoom level higher for sharper tiles
+  // But cap at reasonable limits to avoid excessive tile requests
+  if (devicePixelRatio >= 2 && baseZoom < 19) {
+    return Math.min(baseZoom + 1, 19);
+  }
+  
+  return baseZoom;
+}

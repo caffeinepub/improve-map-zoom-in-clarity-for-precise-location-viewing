@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Allow the satellite map column to expand to 90% screen width when clicked.
+**Goal:** Fix the persistent map zoom flickering issue in the map view component.
 
 **Planned changes:**
-- Modify click handler on the map column to expand it to 90% screen width
-- Collapse the other two columns to share the remaining 10% width when map is expanded
-- Ensure clicking the map again or another column restores the default layout
-- Apply smooth transitions consistent with existing column expansion behavior
+- Investigate and resolve zoom flickering that persists despite existing ResizeObserver disconnect logic
+- Ensure smooth tile rendering during zoom operations
+- Test zoom functionality across rapid operations, touch gestures, and active GPS trail rendering scenarios
 
-**User-visible outcome:** Users can click on the satellite map column to expand it to cover 90% of the screen, providing a larger view of the map while keeping the other columns minimally visible.
+**User-visible outcome:** Users can zoom in and out on the map smoothly without any visual flickering or artifacts, including during rapid zoom operations and while GPS trails are being rendered.

@@ -1,38 +1,52 @@
 {
   "kind": "build_request",
-  "title": "Expand satellite map to 90% screen coverage on click",
-  "projectName": "igo GPS",
-  "priority": "normal",
+  "title": "Fix map zoom flickering issue",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
+      "text": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-user-final"
         ],
         "quotes": [
-          "staellite map should be cover 90 of scrre when i click on it"
+          "not resolved"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking the map column expands it to 90% screen width",
-        "Other two columns are collapsed to share 10% total width",
-        "Clicking the map again or clicking another column restores the default layout",
-        "Transition is smooth and matches existing column expansion behavior"
+        "Map zoom transitions are smooth without any flickering",
+        "ResizeObserver behavior during zoom is properly handled",
+        "Tile rendering during zoom operations is stable",
+        "User can zoom in and out repeatedly without visual artifacts"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-final"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Zoom works smoothly during rapid consecutive operations",
+        "Touch-based zoom gestures work without flickering on mobile devices",
+        "Trail rendering remains stable during zoom operations"
       ]
     }
   ],
   "constraints": [
-    "Maintain existing click-to-expand functionality for all three columns",
-    "Do not modify backend/main.mo",
-    "Preserve mobile-optimized map controls and touch interactions"
+    "Must maintain existing ResizeObserver disconnection logic during zoom",
+    "Must not break existing tile caching or Web Mercator projection calculations",
+    "Must preserve touch-friendly mobile optimization"
   ],
   "nonGoals": [
-    "Changing the default collapsed state of columns",
-    "Modifying map rendering or tile loading logic",
-    "Adding new map features or layers"
+    "Changing the map projection system",
+    "Modifying the GPS tracking functionality",
+    "Altering the trail rendering algorithm"
   ],
   "imageRequirements": {
     "required": [],

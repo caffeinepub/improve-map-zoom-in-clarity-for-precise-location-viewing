@@ -150,12 +150,13 @@ function App() {
   };
 
   const handleColumnClick = (column: ExpandedColumn) => {
-    setExpandedColumn((prev) => (prev === column ? null : column));
+    setExpandedColumn((prev) => prev === column ? null : column);
   };
 
   const getColumnWidth = (column: ExpandedColumn) => {
+    // When no column is expanded, all three columns share equal width
     if (expandedColumn === null) {
-      return "w-20";
+      return "w-1/3";
     }
     
     // Special handling for satellite map - 90% width when expanded
@@ -207,11 +208,11 @@ function App() {
             <div className="flex h-full flex-col p-4">
               <div className="mb-4 flex items-center gap-2">
                 <Info className="h-5 w-5 text-primary" />
-                {expandedColumn === "device" && (
+                {(expandedColumn === "device" || expandedColumn === null) && (
                   <h2 className="text-lg font-semibold">Device Info</h2>
                 )}
               </div>
-              {expandedColumn === "device" && (
+              {(expandedColumn === "device" || expandedColumn === null) && (
                 <div className="flex-1 overflow-y-auto space-y-4">
                   <Card>
                     <CardHeader>
@@ -277,11 +278,11 @@ function App() {
             <div className="flex h-full flex-col p-4">
               <div className="mb-4 flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-primary" />
-                {expandedColumn === "tracking" && (
+                {(expandedColumn === "tracking" || expandedColumn === null) && (
                   <h2 className="text-lg font-semibold">Tracking</h2>
                 )}
               </div>
-              {expandedColumn === "tracking" && (
+              {(expandedColumn === "tracking" || expandedColumn === null) && (
                 <div className="flex-1 space-y-4 overflow-y-auto">
                   <Card>
                     <CardHeader>
@@ -359,11 +360,11 @@ function App() {
             <div className="flex h-full flex-col p-4">
               <div className="mb-4 flex items-center gap-2">
                 <Satellite className="h-5 w-5 text-primary" />
-                {expandedColumn === "satellite" && (
+                {(expandedColumn === "satellite" || expandedColumn === null) && (
                   <h2 className="text-lg font-semibold">Satellite Map</h2>
                 )}
               </div>
-              {expandedColumn === "satellite" && (
+              {(expandedColumn === "satellite" || expandedColumn === null) && (
                 <div className="flex-1 overflow-hidden">
                   <MapView
                     location={location}
@@ -444,16 +445,7 @@ function App() {
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Accuracy:</span>
                       <span className="font-medium">
-                        {location.accuracy.toFixed(1)}m
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Distance:</span>
-                      <span className="font-medium">
-                        {totalDistance >= 1000 
-                          ? `${(totalDistance / 1000).toFixed(2)} km`
-                          : `${totalDistance.toFixed(0)} m`
-                        }
+                        ±{location.accuracy.toFixed(1)}m
                       </span>
                     </div>
                   </CardContent>

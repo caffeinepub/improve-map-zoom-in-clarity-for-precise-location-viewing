@@ -1,24 +1,35 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T06:21:36.807Z",
+  "generatedAt": "2026-02-20T11:25:35.010Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
+        "summary": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/components/MapView.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/components/MapView.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/MapView.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/MapView.tsx"
         ]
       }
     ]
@@ -28,7 +39,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
+    "frontend/src/components/MapView.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

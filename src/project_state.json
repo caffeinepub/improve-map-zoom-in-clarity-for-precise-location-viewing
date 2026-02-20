@@ -3,27 +3,30 @@
   "projectStateVersion": 3,
   "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Map zoom flickering issue not resolved"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-when-the-satellite-map-column-is-clicked-expand-it-to-cover-90-of-the-screen-width-while-collapsing-the-other-two-columns-to-share-the-remaining-10",
-      "title": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
+      "id": "feature-investigate-and-fix-the-persistent-map-zoom-flickering-issue-in-mapview-tsx-that-occurs-despite-the-existing-resizeobserver-disconnect-during-zoom-operations",
+      "title": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    }
-  ],
-  "new_feature_requests": [
+    },
     {
-      "id": "AR-1",
-      "summary": "Satellite map should cover 90% of screen when clicked",
-      "reqIds": [],
-      "status": "pending"
+      "id": "feature-test-the-zoom-functionality-across-different-scenarios-including-rapid-zoom-operations-touch-gestures-on-mobile-and-zoom-with-active-gps-trails-being-rendered",
+      "title": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
     }
   ],
-  "projectName": "igo GPS",
+  "new_feature_requests": [],
+  "projectName": "Fix map zoom flickering issue",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-when-the-satellite-map-column-is-clicked-expand-it-to-cover-90-of-the-screen-width-while-collapsing-the-other-two-columns-to-share-the-remaining-10",
-      "featureTitle": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
+      "featureId": "feature-investigate-and-fix-the-persistent-map-zoom-flickering-issue-in-mapview-tsx-that-occurs-despite-the-existing-resizeobserver-disconnect-during-zoom-operations",
+      "featureTitle": "Investigate and fix the persistent map zoom flickering issue in MapView.tsx that occurs despite the existing ResizeObserver disconnect during zoom operations",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/components/MapView.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -17,6 +17,25 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-test-the-zoom-functionality-across-different-scenarios-including-rapid-zoom-operations-touch-gestures-on-mobile-and-zoom-with-active-gps-trails-being-rendered",
+      "featureTitle": "Test the zoom functionality across different scenarios including rapid zoom operations, touch gestures on mobile, and zoom with active GPS trails being rendered",
+      "files": [
+        "frontend/src/components/MapView.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "http-outcalls@3.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

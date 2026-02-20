@@ -1,53 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Keep last location dot pinned when zooming and prefer precise (high-accuracy) geolocation",
+  "title": "Expand satellite map to 90% screen coverage on click",
+  "projectName": "igo GPS",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Fix the canvas map zoom behavior so the user’s last known location dot remains pinned to the exact same geographic coordinate when zooming out/in (no visible shifting/jumping of the dot relative to the map tiles), including when GPS tracking is paused and no new location updates are arriving.",
+      "id": "REQ-1",
+      "text": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-user-latest"
         ],
         "quotes": [
-          "as soon as i zoom out the my last location dot should be the the same spot."
+          "staellite map should be cover 90 of scrre when i click on it"
         ]
       },
       "acceptanceCriteria": [
-        "When the user taps Zoom Out or performs pinch-zoom, and the underlying location latitude/longitude has not changed, the rendered location dot remains visually anchored to the same place on the map (no jump between tiles or re-centering drift).",
-        "Zooming in/out does not change the stored/used map center coordinate unless the user explicitly pans/recenters or a new location update is received in auto-follow mode.",
-        "Works consistently across button zoom and pinch zoom interactions."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Update location tracking to prefer “precise” (high accuracy) geolocation whenever available, and add user-facing messaging that explains how to enable Precise Location at the OS/browser level when the browser only provides approximate location (large accuracy radius).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "as well as i want precise location not accurate location"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All geolocation reads used for tracking (watch and any periodic refresh) request high accuracy (precise) mode when supported by the browser.",
-        "If the reported `coords.accuracy` indicates approximate location (e.g., unusually large radius), the UI shows clear English guidance telling the user to enable Precise Location in system/browser settings (without claiming the app can force it).",
-        "The app continues to function even when only approximate location is available (no crashes, and the map/dot still renders)."
+        "Clicking the map column expands it to 90% screen width",
+        "Other two columns are collapsed to share 10% total width",
+        "Clicking the map again or clicking another column restores the default layout",
+        "Transition is smooth and matches existing column expansion behavior"
       ]
     }
   ],
   "constraints": [
-    "Frontend paths listed as immutable must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose only).",
-    "Keep all backend logic in the existing single Motoko actor (backend/main.mo); do not introduce additional backend services."
+    "Maintain existing click-to-expand functionality for all three columns",
+    "Do not modify backend/main.mo",
+    "Preserve mobile-optimized map controls and touch interactions"
   ],
   "nonGoals": [
-    "Do not add third-party map SDKs (e.g., Google Maps JS SDK/Mapbox/Leaflet).",
-    "Do not implement background geolocation beyond what the browser already provides (no native mobile features).",
-    "Do not add third-party authentication providers (only Internet Identity is allowed)."
+    "Changing the default collapsed state of columns",
+    "Modifying map rendering or tile loading logic",
+    "Adding new map features or layers"
   ],
   "imageRequirements": {
     "required": [],

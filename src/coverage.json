@@ -1,39 +1,24 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-12T18:34:19.179Z",
+  "generatedAt": "2026-02-20T06:21:36.807Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-4",
-        "summary": "Fix the canvas map zoom behavior so the user’s last known location dot remains pinned to the exact same geographic coordinate when zooming out/in (no visible shifting/jumping of the dot relative to the map tiles), including when GPS tracking is paused and no new location updates are arriving.",
+        "id": "REQ-1",
+        "summary": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/MapView.tsx",
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/MapView.tsx",
           "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Update location tracking to prefer “precise” (high accuracy) geolocation whenever available, and add user-facing messaging that explains how to enable Precise Location at the OS/browser level when the browser only provides approximate location (large accuracy radius).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/CoordinateDisplay.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/CoordinateDisplay.tsx"
         ]
       }
     ]
@@ -44,8 +29,6 @@
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/App.tsx",
-    "frontend/src/components/CoordinateDisplay.tsx",
-    "frontend/src/components/MapView.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

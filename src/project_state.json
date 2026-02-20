@@ -1,50 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 3,
   "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [
-    "Rebuild/deploy process encountered an internal LLM error during latest attempt"
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-improve-map-tile-sharpness-when-zooming-in-by-adding-high-dpi-tile-rendering-in-the-canvas-map-so-the-view-remains-crisp-on-high-devicepixelratio-screens-e-g-load-higher-resolution-tiles-where-supported-and-render-them-at-the-correct-scale-without-blurring",
-      "title": "Improve map tile sharpness when zooming in by adding high-DPI tile rendering in the canvas map so the view remains crisp on high devicePixelRatio screens (e.g., load higher-resolution tiles where supported and render them at the correct scale without blurring).",
+      "id": "feature-when-the-satellite-map-column-is-clicked-expand-it-to-cover-90-of-the-screen-width-while-collapsing-the-other-two-columns-to-share-the-remaining-10",
+      "title": "When the satellite map column is clicked, expand it to cover 90% of the screen width while collapsing the other two columns to share the remaining 10%",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-improve-zoom-interaction-behavior-so-pinch-zoom-and-button-zoom-changes-keep-the-map-centered-on-the-user-selected-center-and-do-not-introduce-jitter-or-sudden-jumps-that-reduce-the-ability-to-pinpoint-a-precise-location",
-      "title": "Improve zoom interaction behavior so pinch-zoom and button zoom changes keep the map centered on the user/selected center and do not introduce jitter or sudden jumps that reduce the ability to pinpoint a precise location.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-lightweight-on-map-ui-indicator-showing-the-current-zoom-level-and-optionally-current-tile-provider-so-users-can-confirm-they-are-fully-zoomed-in-for-precise-viewing",
-      "title": "Add a lightweight on-map UI indicator showing the current zoom level (and optionally current tile provider) so users can confirm they are fully zoomed in for precise viewing.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-fix-the-canvas-map-zoom-behavior-so-the-user-s-last-known-location-dot-remains-pinned-to-the-exact-same-geographic-coordinate-when-zooming-out-in-no-visible-shifting-jumping-of-the-dot-relative-to-the-map-tiles-including-when-gps-tracking-is-paused-and-no-new-location-updates-are-arriving",
-      "title": "Fix the canvas map zoom behavior so the user’s last known location dot remains pinned to the exact same geographic coordinate when zooming out/in (no visible shifting/jumping of the dot relative to the map tiles), including when GPS tracking is paused and no new location updates are arriving.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-location-tracking-to-prefer-precise-high-accuracy-geolocation-whenever-available-and-add-user-facing-messaging-that-explains-how-to-enable-precise-location-at-the-os-browser-level-when-the-browser-only-provides-approximate-location-large-accuracy-radius",
-      "title": "Update location tracking to prefer “precise” (high accuracy) geolocation whenever available, and add user-facing messaging that explains how to enable Precise Location at the OS/browser level when the browser only provides approximate location (large accuracy radius).",
-      "reqIds": [
-        "REQ-5"
       ],
       "version": 1
     }
@@ -52,24 +18,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Improve map zoom-in clarity for precise location viewing (clearer view when zoomed in)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Keep the user's last location dot pinned to the same map coordinate when zooming in/out (no shifting/jumping when zoom level changes)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Support \"precise\" location mode instead of \"approximate/accurate\" location (request high-accuracy/precise GPS location when available)",
+      "summary": "Satellite map should cover 90% of screen when clicked",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Improve map zoom-in clarity for precise location viewing",
+  "projectName": "igo GPS",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
